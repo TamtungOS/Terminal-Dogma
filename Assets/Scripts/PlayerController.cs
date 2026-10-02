@@ -5,9 +5,16 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
     private Vector2 moveInput;
-    [SerializeField] private float moveSpeed = 6f;
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider; // Reference to player's body collider
+    private bool facingRight = true;
+
+    [Header("Running")]
+    [SerializeField] InputActionReference runActionReference;
+    private float currentSpeed = 6f;
+    [SerializeField] private float minSpeed = 6f;
+    [SerializeField] private float maxSpeed = 20f;
+    private bool isRunning;
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 6f;
@@ -25,9 +32,27 @@ public class PlayerController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>(); // Automatically fetch the box collider
     }
 
+    void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 localscale = transform.localScale;
+        localscale.x *= -1;
+        transform.localScale = localscale;
+    }
+
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    private void IncreaseSpeed()
+    {
+        currentSpeed += 1f;
+    }
+        private void DecreaseSpeed()
+    {
+        currentSpeed -= 1f;
     }
 
     public void OnJump(InputValue value)
@@ -41,14 +66,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnAttack(InputValue value)
-    {
-        if (value.isPressed)
-        {
-            Debug.Log("Attack");
-        }
-    }
-
     private void ExecuteJump()
     {
         rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpForce);
@@ -57,6 +74,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        if (runActionReference.action.IsPressed() && (currentSpeed < maxSpeed))
+        {
+            IncreaseSpeed();
+        }
+        else if (!runActionReference.action.IsPressed() && (currentSpeed > minSpeed))
+        {
+            DecreaseSpeed();
+        }
+
+        if (moveInput.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (moveInput.x < 0 && facingRight)
+        {
+            Flip();    
+        }
         // Check for ground using a precise downward box cast
         isGrounded = CheckIfGrounded();
 
@@ -64,6 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpsRemaining = maxJumps - 1; 
         }
+        // Debug.Log(currentSpeed);
     }
 
     private bool CheckIfGrounded()
@@ -82,6 +118,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.linearVelocity = new Vector2(moveInput.x * moveSpeed, rigidBody.linearVelocity.y);
+        rigidBody.linearVelocity = new Vector2(moveInput.x * currentSpeed, rigidBody.linearVelocity.y);
     }
 }
