@@ -20,7 +20,7 @@ public class Shooter : MonoBehaviour
 
     private void Fire()
     {
-        GameObject obj = pool.GetFromPool();
+        GameObject obj = SimplePool.simplePoolInstance.GetFromPool();
 
         if (obj != null)
         {
@@ -36,7 +36,7 @@ public class Shooter : MonoBehaviour
             if (blast != null)
             {
                 blast.SetDirection(direction);
-                blast.Initialize(pool);
+                blast.Initialize(SimplePool.simplePoolInstance);
             }
         }
     }
