@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     [Header("Ground Check Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float forwardOffset = 0.05f; // Distance cast past the bottom edge
-    private bool isPathSafe;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -22,6 +22,6 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Health" + health);
+        //Debug.Log("Health" + health);
     }
 }
