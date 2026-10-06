@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.IsPaused) return;
 
         if (moveInput.x > 0 && !facingRight)
         {
@@ -122,6 +123,5 @@ public class PlayerController : MonoBehaviour
         currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, rate * Time.fixedDeltaTime);
 
         rigidBody.linearVelocity = new Vector2(moveInput.x * currentSpeed, rigidBody.linearVelocity.y);
-        Debug.Log("Running:" + isRunning);
     }
 }

@@ -14,12 +14,10 @@ public class Shooter : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-    }
-
     private void Fire()
     {
+        if (PauseMenu.IsPaused) return;
+
         GameObject obj = pool.GetFromPool();
 
         if (obj != null)

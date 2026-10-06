@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Terminal-Dogma.slnx",
+    "dotnet.defaultSolution": "Project_1.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
