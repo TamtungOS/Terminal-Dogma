@@ -136,7 +136,7 @@
                     "name": "",
                     "id": "84dbb08d-4bb5-49d8-8211-da666e1e4b3a",
                     "path": "<Keyboard>/shift",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Run",

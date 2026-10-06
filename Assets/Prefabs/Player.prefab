@@ -289,12 +289,13 @@ MonoBehaviour:
   runActionReference: {fileID: 66824669453079794, guid: 2a494f61c99924ba0aa9cba0fcc14e63, type: 3}
   minSpeed: 5
   maxSpeed: 20
+  acceleration: 20
+  deceleration: 30
   jumpForce: 6
   maxJumps: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  extraHeight: 0.05
 --- !u!114 &996019410873984663
 MonoBehaviour:
   m_ObjectHideFlags: 0

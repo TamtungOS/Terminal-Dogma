@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8251950002139323336}
   - component: {fileID: 2460209855000970203}
   - component: {fileID: -7571712715163314542}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ki-Blast
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}

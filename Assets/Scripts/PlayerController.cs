@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +15,10 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed = 6f;
     [SerializeField] private float minSpeed = 6f;
     [SerializeField] private float maxSpeed = 20f;
-    private bool isRunning;
+    [SerializeField] private float acceleration = 20f;
+    [SerializeField] private float deceleration = 30f;
+
+    private bool isRunning = false;
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 10f;
@@ -45,15 +49,6 @@ public class PlayerController : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-    private void IncreaseSpeed()
-    {
-        currentSpeed += 1f;
-    }
-        private void DecreaseSpeed()
-    {
-        currentSpeed -= 1f;
-    }
-
     public void OnJump(InputValue value)
     {
         if (value.isPressed)
@@ -73,15 +68,6 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
-        if (runActionReference.action.IsPressed() && (currentSpeed < maxSpeed))
-        {
-            IncreaseSpeed();
-        }
-        else if (!runActionReference.action.IsPressed() && (currentSpeed > minSpeed))
-        {
-            DecreaseSpeed();
-        }
 
         if (moveInput.x > 0 && !facingRight)
         {
@@ -117,6 +103,25 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        isRunning = runActionReference.action.IsPressed();
+
+        float targetSpeed;
+        float rate;
+
+        if (isRunning)
+        {
+            targetSpeed = maxSpeed;
+            rate = acceleration;
+        }
+        else
+        {
+            targetSpeed = minSpeed;
+            rate = deceleration;
+        }
+
+        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, rate * Time.fixedDeltaTime);
+
         rigidBody.linearVelocity = new Vector2(moveInput.x * currentSpeed, rigidBody.linearVelocity.y);
+        Debug.Log("Running:" + isRunning);
     }
 }
