@@ -6,7 +6,8 @@ public class Spike : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Hit!");
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            playerHealth.TakeHit();
         }
     }
 }

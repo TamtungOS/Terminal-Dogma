@@ -6,9 +6,10 @@ public class Ring : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Debug.Log(gameObject.name);
-            Destroy(gameObject);
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            playerHealth.AddRing();
+
+            gameObject.SetActive(false);
         }
     }
-
 }

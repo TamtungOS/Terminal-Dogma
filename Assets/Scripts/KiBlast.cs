@@ -8,7 +8,7 @@ public class KiBlast : MonoBehaviour
     private float moveDirection = 1f;
 
     private SimplePool originPool;
-    private float damage = 5f;
+    [SerializeField] public float damage = 5f;
 
     public void Initialize(SimplePool poolReference)
     {
@@ -18,6 +18,10 @@ public class KiBlast : MonoBehaviour
     public void SetDirection(float dir)
     {
         moveDirection = dir;
+    }
+    public void ClearTrail()
+    {
+        GetComponent<TrailRenderer>().Clear();
     }
 
     private void OnEnable()

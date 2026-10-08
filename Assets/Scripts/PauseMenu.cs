@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -30,9 +31,11 @@ void Start()
         IsPaused = false;
     }
 
-    private void QuitGame()
+    private void QuitToMenu()
     {
-        Application.Quit();
+        Time.timeScale = 1;
+        IsPaused = false;
+        SceneManager.LoadScene("MainMenu");
     }
     
     void OnPause(InputValue value)
@@ -55,6 +58,6 @@ void Start()
 
     public void OnQuitButtonClick()
     {
-        QuitGame();
+        QuitToMenu();
     }
 }

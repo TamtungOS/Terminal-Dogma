@@ -35,6 +35,7 @@ public class Shooter : MonoBehaviour
             {
                 blast.SetDirection(direction);
                 blast.Initialize(pool);
+                blast.ClearTrail();
             }
         }
     }

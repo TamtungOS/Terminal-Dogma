@@ -25,6 +25,15 @@ public class Enemy : MonoBehaviour
             playerTransform = player.transform;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.TakeHit();
+        }
+    }
     private bool CheckIfPathIsSafe(float moveDirectionX)
     {
         // Determine facing direction (-1 for left, 1 for right)
