@@ -30,8 +30,20 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeHit();
+            CapsuleCollider2D playerCollider = collision.gameObject.GetComponent<CapsuleCollider2D>();
+
+
+            float playerBottomColliderY = playerCollider.bounds.min.y;
+
+            if ( playerBottomColliderY >= boxCollider.bounds.center.y)
+            {
+            gameObject.GetComponent<EnemyHealth>().TakeDamage(5);
+            collision.gameObject.GetComponent<PlayerController>().HeadStompBounce();
+            }
+            else
+            {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeHit();
+            }
         }
     }
     private bool CheckIfPathIsSafe(float moveDirectionX)

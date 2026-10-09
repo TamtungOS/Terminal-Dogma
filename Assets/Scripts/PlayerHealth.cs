@@ -20,7 +20,11 @@ public class PlayerHealth : MonoBehaviour
     {
         if (invincibleTimer > 0f)
         {
-            invincibleTimer = invincibleTime - Time.deltaTime;
+            invincibleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            invincibleTimer = 0f;
         }
     }
 
@@ -35,6 +39,10 @@ public class PlayerHealth : MonoBehaviour
         ringText.text = "Rings: " + rings;
     }
 
+    public void CheckIfStomp()
+    {
+        
+    }
     public void TakeHit()
     {
         if (invincibleTimer <= 0f)
