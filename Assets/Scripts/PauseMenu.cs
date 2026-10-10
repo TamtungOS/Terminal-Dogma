@@ -40,6 +40,8 @@ void Start()
     
     void OnPause(InputValue value)
     {
+        if (Time.timeScale == 0f && !IsPaused) return;
+        
         Debug.Log("Game Pause Input Detected!!");
         if (value.isPressed && !IsPaused)
         {

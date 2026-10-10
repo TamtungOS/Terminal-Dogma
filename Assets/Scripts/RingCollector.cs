@@ -8,7 +8,6 @@ public class RingCollector : MonoBehaviour
      if (collision.CompareTag("Ring"))
         {
             totalRings++;
-            Debug.Log("Total Rings: " + totalRings);
         }   
     }
 }

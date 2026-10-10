@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
     private static readonly int IsGroundedHash = Animator.StringToHash("isGrounded");
     private static readonly int DoubleJumpHash = Animator.StringToHash("DoubleJump");
+    private static readonly int RunSpeedMultiplierHash = Animator.StringToHash("RunSpeedMultiplier");
 
     private Vector2 moveInput;
     private Rigidbody2D rigidBody;
     private CapsuleCollider2D capsuleCollider; // Reference to player's body collider
     private Animator animator;
+    private TrailRenderer speedTrail;
     private bool facingRight = true;
 
     [Header("Running")]
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float acceleration = 20f;
     [SerializeField] private float deceleration = 30f;
     private float currentSpeed = 6f;
+    [SerializeField] private float maxRunAnimationSpeed = 5f;    
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 10f;
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
+        speedTrail = GetComponent<TrailRenderer>();
     }
 
     void Flip()
@@ -103,6 +107,12 @@ public class PlayerController : MonoBehaviour
         // Tell the Animator what the player is doing
         animator.SetFloat(SpeedHash, Mathf.Abs(moveInput.x));
         animator.SetBool(IsGroundedHash, isGrounded);
+        
+        float speedPercent = Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
+        float runAnimationSpeed = Mathf.Lerp(1f, maxRunAnimationSpeed, speedPercent * speedPercent);
+
+        animator.SetFloat(RunSpeedMultiplierHash, runAnimationSpeed);;
+        speedTrail.emitting = speedPercent > 0.8f;
     }
 
     public void HeadStompBounce()
