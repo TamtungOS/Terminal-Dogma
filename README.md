@@ -14,6 +14,8 @@ Run through a night-time sky ruin, collect rings, stomp enemies and avoid spikes
 2. Open the extracted folder and run `Terminal Dogma.exe`.
 3. If Windows shows a "Windows protected your PC" screen, click **More info**, then **Run anyway**. The game is not code-signed, so Windows shows this for any unsigned download.
 
+### Playing WebGL
+1. Click link: https://play.unity.com/en/games/c75cdd3b-981c-494b-a8f6-24d22a413a37/terminal-dogma
 ### Controls
 
 | Action | Keys |
