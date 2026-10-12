@@ -157,11 +157,20 @@ The requirements are built into one game loop. Rings are both the score and the 
 | Free Slime Mobs Pixel Art Top-Down Sprite Pack, by CraftPix | Enemy sprite | https://craftpix.net/freebies/free-slime-mobs-pixel-art-top-down-sprite-pack/ |
 | Free 3 Cyberpunk Characters Pixel Art, by CraftPix | Player sprite sheets (idle, run, jump, double jump) | https://files.craftpix.net/2024/06/093f65e080a295f8076b1c5722a46aa2/craftpix-net-856554-free-3-cyberpunk-characters-pixel-art.zip |
 | Ring sprites, from the Free Sky Ruins 2D Platformer Tileset by CraftPix | Collectible ring animation. Made from the pack's coin animation frames; I erased the center of each frame in Photopea to turn the coins into rings | https://craftpix.net/freebies/free-sky-ruins-2d-platformer-tileset/ |
-| Keyboard key icons (`kb_dark_all.png`), from itch.io | Keyboard key icons on the main menu's controls display | https://vryell.itch.io/controller-keyboard-icons|
+| Keyboard key icons (`kb_dark_all.png`), from itch.io | Keyboard key icons on the main menu's controls display | https://vryell.itch.io/controller-keyboard-icons |
 | Inter typeface (SIL Open Font License) | Lettering in the title logo | https://rsms.me/inter/ |
 | TextMesh Pro, Universal Render Pipeline, Input System | Unity packages | Unity Technologies |
 
-The title "Terminal Dogma" is a reference to a location in *Neon Genesis Evangelion*. No assets from the series are used.
+---
+
+## References and Inspiration
+
+These works inspired the game's name and design. No assets, characters, music or code from either series are used; all mechanics were written from scratch for this project.
+
+| Work | What it inspired |
+|---|---|
+| *Neon Genesis Evangelion* (anime series, 1995) | The title. "Terminal Dogma" is the name of a location in the series |
+| *Sonic the Hedgehog* series (Sega, 1991 onward) | **Rings as health:** a hit scatters your rings, and a hit with none ends the attempt. **Scattered rings:** dropped rings bounce away and can be recollected for a few seconds before vanishing. **Momentum:** speed builds the longer you keep moving and is lost when you stop or hit a wall. **Enemy stomp:** jumping on an enemy defeats it and bounces you upward. **End-of-level rank:** the results screen grades each run with a letter based on time and rings |
 
 ---
 
