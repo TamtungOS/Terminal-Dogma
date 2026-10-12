@@ -5,29 +5,27 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public static bool IsPaused { get; private set; }
-    [SerializeField] GameObject PauseMenuCanvas;
-    [SerializeField] GameObject ResumeButton;
-    [SerializeField] GameObject QuitGameButton;
+    [SerializeField] private GameObject pauseMenuCanvas;
 
-void Start()
+    private void Start()
     {
-        if (PauseMenuCanvas != null)
+        if (pauseMenuCanvas != null)
         {
-            PauseMenuCanvas.SetActive(false);
+            pauseMenuCanvas.SetActive(false);
         }
     }
 
-    void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0;
-        PauseMenuCanvas.SetActive(true);
+        pauseMenuCanvas.SetActive(true);
         IsPaused = true;
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
-        PauseMenuCanvas.SetActive(false);
+        pauseMenuCanvas.SetActive(false);
         IsPaused = false;
     }
 
@@ -37,12 +35,11 @@ void Start()
         IsPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
-    
-    void OnPause(InputValue value)
+
+    private void OnPause(InputValue value)
     {
         if (Time.timeScale == 0f && !IsPaused) return;
-        
-        Debug.Log("Game Pause Input Detected!!");
+
         if (value.isPressed && !IsPaused)
         {
             PauseGame();

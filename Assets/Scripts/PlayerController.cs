@@ -22,12 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float acceleration = 20f;
     [SerializeField] private float deceleration = 30f;
     private float currentSpeed = 6f;
-    [SerializeField] private float maxRunAnimationSpeed = 5f;    
+    [SerializeField] private float maxRunAnimationSpeed = 5f;
 
     [Header("Jump Variables")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private int maxJumps = 2; // 1 = Single Jump, 2 = Double Jump
     private int jumpsRemaining;
+    [SerializeField] private float coyoteTime = .1f;
+    private float coyoteTimer = 0f;
 
     [Header("Ground Check Settings")]
     [SerializeField] private LayerMask groundLayer;
@@ -41,7 +43,7 @@ public class PlayerController : MonoBehaviour
         speedTrail = GetComponent<TrailRenderer>();
     }
 
-    void Flip()
+    private void Flip()
     {
         facingRight = !facingRight;
 
@@ -61,10 +63,10 @@ public class PlayerController : MonoBehaviour
 
         if (value.isPressed)
         {
-            if (isGrounded)
+            if (coyoteTimer > 0f)
             {
-                // Jumping from the ground is free
                 ExecuteJump();
+                coyoteTimer = 0f;
             }
             else if (jumpsRemaining > 0)
             {
@@ -96,22 +98,28 @@ public class PlayerController : MonoBehaviour
             currentSpeed = minSpeed;
         }
 
-        // Check for ground using a small box under the feet
         isGrounded = CheckIfGrounded();
 
-        if (isGrounded)
+        if (isGrounded && rigidBody.linearVelocity.y <= 0.01f)
         {
+            // On the ground and not rising: refill the air jump and the coyote timer
             jumpsRemaining = maxJumps - 1;
+            coyoteTimer = coyoteTime;
+        }
+        else
+        {
+            // In the air: count the coyote timer down
+            coyoteTimer = coyoteTimer - Time.deltaTime;
         }
 
         // Tell the Animator what the player is doing
         animator.SetFloat(SpeedHash, Mathf.Abs(moveInput.x));
         animator.SetBool(IsGroundedHash, isGrounded);
-        
+
         float speedPercent = Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
         float runAnimationSpeed = Mathf.Lerp(1f, maxRunAnimationSpeed, speedPercent * speedPercent);
 
-        animator.SetFloat(RunSpeedMultiplierHash, runAnimationSpeed);;
+        animator.SetFloat(RunSpeedMultiplierHash, runAnimationSpeed);
         speedTrail.emitting = speedPercent > 0.8f;
     }
 

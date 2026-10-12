@@ -13,7 +13,7 @@ public class LevelGoal : MonoBehaviour
     [SerializeField] private TMP_Text resultsGradeText;
 
     [Header("Grading")]
-    [SerializeField] private int totalRings = 211;
+    [SerializeField] private int totalRings = 213;
     [SerializeField] private float fastTime = 45f;   // this time or better earns the full time score
     [SerializeField] private float slowTime = 120f;  // this time or worse earns no time score
 
@@ -79,7 +79,7 @@ public class LevelGoal : MonoBehaviour
     {
         resultsTimeText.text = "Time: " + elapsedTime.ToString("F1");
         resultsRingsText.text = "Rings: " + rings;
-        resultsGradeText.text = "Grade:" + CalculateGrade(rings);
+        resultsGradeText.text = "Grade: " + CalculateGrade(rings);
 
         resultsPanel.SetActive(true);
 

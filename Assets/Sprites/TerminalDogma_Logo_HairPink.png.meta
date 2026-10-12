@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: da7db98731c3d3f4b899e0b57830b6a1
+guid: 53605c4f445ad46d5b7fe82ee45749ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5113142508598051204
-    second: Sky_Ruins_2D_Platformer_Tileset_Environment - Stone 01_0
+      213: -8667867888189022385
+    second: TerminalDogma_Logo_HairPink_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sky_Ruins_2D_Platformer_Tileset_Environment - Stone 01_0
+      name: TerminalDogma_Logo_HairPink_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 12
-        width: 106
-        height: 104
+        x: 15
+        y: 15
+        width: 1865
+        height: 674
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c7e3011aaf77a09b0800000000000000
-      internalID: -5113142508598051204
+      spriteID: f4f5a7c741c85b780800000000000000
+      internalID: -8667867888189022385
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sky_Ruins_2D_Platformer_Tileset_Environment - Stone 01_0: -5113142508598051204
+      TerminalDogma_Logo_HairPink_0: -8667867888189022385
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

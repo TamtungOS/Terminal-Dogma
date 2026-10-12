@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class SimplePool : MonoBehaviour
 {
-    public GameObject prefab;
-    public int poolSize = 10;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private int poolSize = 10;
     private List<GameObject> pool = new List<GameObject>();
 
     private void Awake()
@@ -17,7 +17,6 @@ public class SimplePool : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     public GameObject GetFromPool()
     {
         foreach (GameObject obj in pool)

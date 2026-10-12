@@ -3,17 +3,17 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 7f;
-    private float detectionRange = 8f;
+    [SerializeField] private float detectionRange = 8f;
     private Transform playerTransform;
     private Rigidbody2D rigidBody;
     private BoxCollider2D boxCollider;
-    
+    [SerializeField] private float health = 5;
+
     [Header("Ground Check Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float forwardOffset = 0.05f; // Distance cast past the bottom edge
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -32,43 +32,42 @@ public class Enemy : MonoBehaviour
         {
             CapsuleCollider2D playerCollider = collision.gameObject.GetComponent<CapsuleCollider2D>();
 
-
             float playerBottomColliderY = playerCollider.bounds.min.y;
 
-            if ( playerBottomColliderY >= boxCollider.bounds.center.y)
+            if (playerBottomColliderY >= boxCollider.bounds.center.y)
             {
-            gameObject.GetComponent<EnemyHealth>().TakeDamage(5);
-            collision.gameObject.GetComponent<PlayerController>().HeadStompBounce();
+                gameObject.GetComponent<EnemyHealth>().TakeDamage(health);
+                collision.gameObject.GetComponent<PlayerController>().HeadStompBounce();
             }
             else
             {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeHit();
+                collision.gameObject.GetComponent<PlayerHealth>().TakeHit();
             }
         }
     }
-    private bool CheckIfPathIsSafe(float moveDirectionX)
+
+    private bool CheckIfPathIsSafe()
     {
         // Determine facing direction (-1 for left, 1 for right)
         float facingDir = Mathf.Sign(transform.localScale.x);
 
         // Position the check slightly ahead of the feet in the direction of movement
-        Vector2 checkPosition = new Vector2(
-            boxCollider.bounds.center.x + (facingDir * forwardOffset), 
-            boxCollider.bounds.min.y - 0.05f
-        );
-        
+        Vector2 checkPosition = new Vector3(
+            boxCollider.bounds.center.x + (facingDir * forwardOffset),
+            boxCollider.bounds.min.y - 0.05f,1);
+
         Vector2 checkSize = new Vector2(0.2f, 0.1f);
 
         // Check if there is ground ahead under the feet
         Collider2D hit = Physics2D.OverlapBox(checkPosition, checkSize, 0f, groundLayer);
-        
+
         return hit != null;
     }
 
     private void FixedUpdate()
     {
         if (playerTransform == null) return;
-        
+
         float distanceToPlayer = Vector2.Distance(transform.position, playerTransform.position);
 
         if (distanceToPlayer <= detectionRange)
@@ -78,15 +77,15 @@ public class Enemy : MonoBehaviour
             // Flip the enemy visually based on movement direction
             if (direction.x > 0.01f)
             {
-                transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1f);
             }
             else if (direction.x < -0.01f)
             {
-                transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, 1f);
             }
 
             // Check if there is ground ahead before applying horizontal velocity
-            if (CheckIfPathIsSafe(direction.x))
+            if (CheckIfPathIsSafe())
             {
                 // Move horizontally while preserving vertical gravity velocity (rigidBody.linearVelocity.y)
                 rigidBody.linearVelocity = new Vector2(direction.x * moveSpeed, rigidBody.linearVelocity.y);

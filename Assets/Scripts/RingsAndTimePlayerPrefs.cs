@@ -2,27 +2,27 @@ using UnityEngine;
 
 public static class RingsAndTimePlayerPrefs
 {
-    const string RingsKey = "Rings";
-    const string TimeKey = "Time";
+    const string ringsKey = "Rings";
+    const string timeKey = "Time";
 
-    public static void SetRings(int Value)
+    public static void SetRings(int value)
     {
-        PlayerPrefs.SetInt(RingsKey, Value);
+        PlayerPrefs.SetInt(ringsKey, value);
     }
 
     public static int GetRings()
     {
-       return PlayerPrefs.GetInt(RingsKey);
+        return PlayerPrefs.GetInt(ringsKey);
     }
 
-    public static void SetTime(float Value)
+    public static void SetTime(float value)
     {
-        PlayerPrefs.SetFloat(TimeKey, Value);
+        PlayerPrefs.SetFloat(timeKey, value);
     }
 
     public static float GetTime()
     {
-       return PlayerPrefs.GetFloat(TimeKey);
+        return PlayerPrefs.GetFloat(timeKey);
     }
 
     public static void SavePlayerPrefs()
