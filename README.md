@@ -16,6 +16,7 @@ Run through a night-time sky ruin, collect rings, stomp enemies and avoid spikes
 
 ### Playing WebGL
 1. Click link: https://play.unity.com/en/games/c75cdd3b-981c-494b-a8f6-24d22a413a37/terminal-dogma
+
 ### Controls
 
 | Action | Keys |
@@ -163,11 +164,20 @@ The requirements are built into one game loop. Rings are both the score and the 
 | Inter typeface (SIL Open Font License) | Lettering in the title logo | https://rsms.me/inter/ |
 | TextMesh Pro, Universal Render Pipeline, Input System | Unity packages | Unity Technologies |
 
+### Music
+
+Both tracks are copyrighted commercial music. They are used unmodified, as-is, for this non-commercial class project only, and are not licensed for distribution.
+
+| Track | Used for | Source |
+|---|---|---|
+| "Dearly Beloved", composed by Yoko Shimomura, from *Kingdom Hearts II* (Square Enix, 2005) | Main menu music | Kingdom Hearts II original soundtrack. © Square Enix / Disney |
+| Intro / title theme, composed by Takashi Tateishi, from *Mega Man 2* (Capcom, 1988) | World 1 background music | Mega Man 2 original soundtrack. © Capcom |
+
 ---
 
 ## References and Inspiration
 
-These works inspired the game's name and design. No assets, characters, music or code from either series are used; all mechanics were written from scratch for this project.
+These works inspired the game's name and design. No assets, characters, music or code from either series are used; all mechanics were written from scratch for this project. (The music listed under Third-Party Assets comes from other series.)
 
 | Work | What it inspired |
 |---|---|
